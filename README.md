@@ -1,25 +1,23 @@
 # Pentest Everything
 
-_I initially created this cheatsheet for the **OSCP** exam, but it is **no longer comprehensive** since the exam 
-was drastically changed in early 2022. However, it may still be useful for pentesting, CTFs, or just as a great 
-example of exam cheatsheets._
+_I am creating this as a guide for my **OSCP** exam._
 
-This cheatsheet has quick guides and useful commands to enumerate and exploit low-hanging fruits and common services. 
+This cheatsheet has quick guides and useful commands to enumerate and exploit low-hanging fruits and common services.
 
-I recommend beginners look at the [references](#references). These courses and videos helped me gain fundamental 
-knowledge for the OSCP exam and pentesting in general.
+I recommend beginners look at the [references](#references). These courses and videos helped me gain fundamental knowledge for the OSCP exam and pentesting in general.
 
-Also, I added links to original repositories and/or authors of the [utilities](#utilities) I use. I compiled/downloaded  
-utilities and put them into my private repo _(pentesting-tools)_. I cannot share them for legal reasons, so you 
-have to compile/download them yourself.
+Also, I added links to original repositories and/or authors of the [utilities](#utilities) I use. I compiled a list of utilities that I prefer, but you must compile/download them yourself.
 
-[Github-md-toc-generator](https://github.com/mchern1kov/github-md-toc-generator) is used to generate Tables of Contents.
-```
-─────█─▄▀█──█▀▄─█───── 
-────▐▌──────────▐▌──── 
-────█▌▀▄──▄▄──▄▀▐█──── 
-───▐██──▀▀──▀▀──██▌─── 
-──▄████▄──▐▌──▄████▄──
+This is a fork from [maksyche/pentest-everything](#https://github.com/maksyche/pentest-everything)
+
+!#[Github-md-toc-generator](https://github.com/mchern1kov/github-md-toc-generator) is used to generate Tables of Contents.
+``` python
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            /\
+/vvvvvvvvvvvv \--------------------------------------,
+`^^^^^^^^^^^^ /====================================="
+            \/
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ```
 
 ---
