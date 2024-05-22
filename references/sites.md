@@ -10,3 +10,4 @@
 
 [hacktrick](https://book.hacktricks.xyz/) - good for everything
 
+[Cheatsheet-God](https://github.com/OlivierLaflamme/Cheatsheet-God) - Cheat sheets for Everything

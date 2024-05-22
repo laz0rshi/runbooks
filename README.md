@@ -11,14 +11,17 @@ Also, I added links to original repositories and/or authors of the [utilities](#
 This is a fork from [maksyche/pentest-everything](#https://github.com/maksyche/pentest-everything)
 
 !#[Github-md-toc-generator](https://github.com/mchern1kov/github-md-toc-generator) is used to generate Tables of Contents.
+
 ``` python
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            /\
-/vvvvvvvvvvvv \--------------------------------------,
-`^^^^^^^^^^^^ /====================================="
-            \/
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+                 / \
+/vvvvvvvvvvvvvvvvv  \------------------------------------------------------------,
+`^^^^^^^^^^^^^^^^^  /==========================================================="
+                 \ /
 ```
+
+
+
 
 ---
 ### Contents
