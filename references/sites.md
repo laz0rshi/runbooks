@@ -1,6 +1,16 @@
 # Useful sites
-
+## Shels 
 [revshells](https://www.revshells.com) - helps with creating shells
+
+[CyberChef](https://gchq.github.io/CyberChef)
+
+[urlencoder](https://www.urlencoder.org/)
+
+[octal](http://www.unit-conversion.info/texttools/octal/)
+
+[hex](http://www.unit-conversion.info/texttools/hex)
+
+[IP Converter](https://www.silisoftware.com/tools/ipconverter.php)
 
 [codefather](https://codefather.tech/blog/sudo-command-linux) - 
 
