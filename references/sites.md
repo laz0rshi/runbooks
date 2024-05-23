@@ -1,5 +1,5 @@
 # Useful sites
-## Shels 
+## Shells 
 [revshells](https://www.revshells.com) - helps with creating shells
 
 [CyberChef](https://gchq.github.io/CyberChef)
@@ -21,3 +21,7 @@
 [hacktrick](https://book.hacktricks.xyz/) - good for everything
 
 [Cheatsheet-God](https://github.com/OlivierLaflamme/Cheatsheet-God) - Cheat sheets for Everything
+## Password Attacks
+
+https://www.tunnelsup.com/hash-analyzer/
+https://hashes.com/en/tools/hash_identifier
