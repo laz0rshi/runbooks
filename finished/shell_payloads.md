@@ -1,5 +1,42 @@
 # Shell & Payloads
 
+## Introduction
+
+## Table of Contents
+
+- [Shell \& Payloads](#shell--payloads)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Payload Structure - msfvenom](#payload-structure---msfvenom)
+  - [Non-Meterpreter Binaries](#non-meterpreter-binaries)
+    - [Windows](#windows)
+      - [x86 staged - msfvenom (Non-Meterpreter)](#x86-staged---msfvenom-non-meterpreter)
+      - [x64 staged - msfvenom (Non-Meterpreter)](#x64-staged---msfvenom-non-meterpreter)
+      - [x86 stageless - msfvenom (Non-Meterpreter)](#x86-stageless---msfvenom-non-meterpreter)
+      - [x64 stageless - msfvenom (Non-Meterpreter)](#x64-stageless---msfvenom-non-meterpreter)
+    - [Linux](#linux)
+      - [x86 staged - msfvenom (Non-Meterpreter)](#x86-staged---msfvenom-non-meterpreter-1)
+      - [x64 staged - msfvenom (Non-Meterpreter)](#x64-staged---msfvenom-non-meterpreter-1)
+      - [x86 stageless - msfvenom (Non-Meterpreter)](#x86-stageless---msfvenom-non-meterpreter-1)
+      - [x64 stageless - msfvenom (Non-Meterpreter)](#x64-stageless---msfvenom-non-meterpreter-1)
+  - [Web Payloads](#web-payloads)
+    - [Java WAR - msfvenom (Non-Meterpreter)](#java-war---msfvenom-non-meterpreter)
+    - [ASP - msfvenom (Non-Meterpreter)](#asp---msfvenom-non-meterpreter)
+    - [ASPX - msfvenom (Non-Meterpreter)](#aspx---msfvenom-non-meterpreter)
+    - [JSP - msfvenom (Non-Meterpreter)](#jsp---msfvenom-non-meterpreter)
+    - [WAR - msfvenom (Non-Meterpreter)](#war---msfvenom-non-meterpreter)
+    - [PHP - msfvenom (Non-Meterpreter) - Reverse Shell](#php---msfvenom-non-meterpreter---reverse-shell)
+  - [Web Shells](#web-shells)
+    - [PHP](#php)
+    - [JSP](#jsp)
+    - [ASP](#asp)
+    - [ASPX](#aspx)
+    - [Webshell Infecting views.py - Python (Flask)](#webshell-infecting-viewspy---python-flask)
+    - [nodejs](#nodejs)
+    - [Perl](#perl)
+  - [Spawn tty via Python](#spawn-tty-via-python)
+  - [Spawn an upgraded shell](#spawn-an-upgraded-shell)
+
 ## Payload Structure - msfvenom
 
 A staged payload is usually shipped in two parts. The first part contains a small primary payload that will establish a connection, transferring a larger secondary payload with the rest of the shellcode.  

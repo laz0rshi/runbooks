@@ -1,4 +1,11 @@
 # Linux Runbook
+* [Task List](#task-list)
+* [Stabilize Shell](#stabilize-shell)
+* [Copy tools to the target](#copy-tools-to-the-target)
+* [Enumerate](#enumerate)
+* [Establish tunnel](#establish-tunnel)
+* [Establish persistance](#establish-persistance)
+* [Automated Tools](#automated-tools)
 
 ## Task List
 

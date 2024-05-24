@@ -1,4 +1,10 @@
 # Privilege Escalation
+* [Objectives](#objectives)
+    * [Tools and Techniques](#tools-and-techniques)
+    * [Exploit Frameworks](#exploit-frameworks)
+        * [Privilege Escalation Tools](#privilege-escalation-tools)
+    * [Lateral Movement Tools](#lateral-movement-tools)
+    * [Other Techniques](#other-techniques)
 
 ## Objectives
 

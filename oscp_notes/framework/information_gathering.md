@@ -1,4 +1,6 @@
 # OSCP – Information Gathering Checklist
+* [Network Information](#network-information)
+* [Other Attacks](#other-attacks)
 
 ## Network Information
 
@@ -9,7 +11,6 @@ The goal of Netwrok Information is to identify hosts withing the network, and wh
 - [ ] Host Enumeration
 - [ ] DNS Enumeration
 - [ ] Network Mapping
-
 
 - [ ] Enumeration of Files and Directories
 - [ ] Enumeration of Virtual Hosts

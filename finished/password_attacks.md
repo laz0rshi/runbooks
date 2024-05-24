@@ -1,5 +1,26 @@
 # OSCP Password Attacks Checklist
 
+## Introduction
+
+## Table of Contents
+
+- [OSCP Password Attacks Checklist](#oscp-password-attacks-checklist)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Generate World list](#generate-world-list)
+    - [Rules](#rules)
+  - [Cracking Password](#cracking-password)
+    - [Identifying Hash Type](#identifying-hash-type)
+    - [Hashing different file types for cracking with 2john](#hashing-different-file-types-for-cracking-with-2john)
+  - [Brute Force Attacks](#brute-force-attacks)
+    - [Password Manager](#password-manager)
+    - [Hydra](#hydra)
+    - [RDP - Crowbar](#rdp---crowbar)
+    - [SMB - Hydra](#smb---hydra)
+    - [SSH - Hydra](#ssh---hydra)
+    - [HTTP POST Login Form - Hydra](#http-post-login-form---hydra)
+    - [HTTP GET Login Form - Hydra](#http-get-login-form---hydra)
+
 ## Generate World list
 
 Generating wordlist based on information from a website

@@ -1,8 +1,9 @@
-# Active Directory Enumeration
+# OSCP Active Directory Enumeration
 
-## Table of Contents
-- [Active Directory Enumeration](#active-directory-enumeration)
-  - [Table of Contents](#table-of-contents)
+## Introduction
+This runbook provides a comprehensive guide to Active Directory enumeration. It includes a variety of techniques and tools for discovering and exploiting Active Directory configurations.
+
+- [OSCP Active Directory Enumeration](#oscp-active-directory-enumeration)
   - [Introduction](#introduction)
   - [Enumeration](#enumeration)
     - [Enumerating Users](#enumerating-users)
@@ -40,9 +41,6 @@
     - [Golden Ticket - Pass the Ticket](#golden-ticket---pass-the-ticket)
     - [DCSync Attack](#dcsync-attack)
     - [NetNTLM Authentication Exploits with SMB - LLMNR Poisoning - Capturing hash in responder](#netntlm-authentication-exploits-with-smb---llmnr-poisoning---capturing-hash-in-responder)
-
-## Introduction
-This runbook provides a comprehensive guide to Active Directory enumeration. It includes a variety of techniques and tools for discovering and exploiting Active Directory configurations.
 
 ## Enumeration
 

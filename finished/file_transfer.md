@@ -1,5 +1,20 @@
 # OSCP File Transfer Checklist
 
+## Introduction
+
+## Table of Contents
+
+- [OSCP File Transfer Checklist](#oscp-file-transfer-checklist)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [SMB Server](#smb-server)
+  - [HTTP](#http)
+    - [Server](#server)
+    - [Client](#client)
+  - [Pure-FTPd](#pure-ftpd)
+  - [tftp](#tftp)
+  - [scp](#scp)
+
 ## SMB Server
 
 ```sh

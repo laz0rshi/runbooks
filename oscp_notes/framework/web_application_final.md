@@ -1,4 +1,7 @@
 # OSCP – Web Application Checklist
+* [Web Enumeration](#web-enumeration)
+* [Web Vulnerabilities](#web-vulnerabilities)
+* [Other Attacks](#other-attacks)
 
 ## Web Enumeration
 

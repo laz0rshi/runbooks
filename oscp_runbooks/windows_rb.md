@@ -1,5 +1,17 @@
 # Windows Runbook
-
+* [Task List](#task-list)
+* [Stabilize](#stabilize)
+    * [Useful reverse shells](#useful-reverse-shells)
+* [Install needed tools](#install-needed-tools)
+* [Enumerate](#enumerate)
+* [Establish tunnel](#establish-tunnel)
+* [Establish persistance](#establish-persistance)
+* [Automated Tools](#automated-tools)
+* [Enumeration and Privilege Escalation](#enumeration-and-privilege-escalation)
+    * [Basic User Enum](#basic-user-enum)
+    * [Enumerate the machine](#enumerate-the-machine)
+    * [WinPeas checklist](#winpeas-checklist)
+    * [AD Checklist - Run this if you have valid AD creds](#ad-checklist---run-this-if-you-have-valid-ad-creds)
 
 ## Task List
 

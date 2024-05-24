@@ -1,4 +1,7 @@
 # Useful sites
+* [Shells](#shells)
+* [Password Attacks](#password-attacks)
+
 ## Shells 
 [revshells](https://www.revshells.com) - helps with creating shells
 
