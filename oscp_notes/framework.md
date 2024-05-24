@@ -8,7 +8,7 @@ I will then create a runbook for every single check list with commands to run th
 [Shares](https://www.notion.so/Shares-e824159594d24a6896bde46332fed6ff?pvs=21)
 
 - [ ] [Set Up](framework/set-up.md)
-- [ ] [Information Gathering](information_gathering.md)
+- [x] [Information Gathering](information_gathering.md)
 - [ ] [Web Application Attacks](web_application_attacks.md)
 - [X] [Password Attacks](password_attacks.md)
 - [ ] [Client-Side Attacks](client_side_attacks.md)
@@ -16,7 +16,7 @@ I will then create a runbook for every single check list with commands to run th
 - [ ] [Linux Enumeration and Privilege Escalation](linux_enumeration_and_privilege_escalation.md)
 - [ ] [Windows Enumeration and Privilege Escalation](windows_enumeration_and_privilege_escalation.md)
 - [x] [Shell and Some Payloads](shell_and_some_payloads.md)
-- [ ] [Port Forwarding and Tunneling](port_forwarding_and_tunneling.md)
+- [x] [Port Forwarding and Tunneling](port_forwarding_and_tunneling.md)
 - [X] [Active Directory](framework/ad.md)
 - [ ] [Tools](refrences/tools.md)
 - [ ] [Sites](refrences/sites.md)

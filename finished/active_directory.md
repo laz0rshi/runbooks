@@ -3,8 +3,10 @@
 ## Introduction
 This runbook provides a comprehensive guide to Active Directory enumeration. It includes a variety of techniques and tools for discovering and exploiting Active Directory configurations.
 
+## Table of Contents
 - [OSCP Active Directory Enumeration](#oscp-active-directory-enumeration)
   - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
   - [Enumeration](#enumeration)
     - [Enumerating Users](#enumerating-users)
     - [Enumerating Groups](#enumerating-groups)

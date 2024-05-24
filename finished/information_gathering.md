@@ -1,7 +1,12 @@
 # OSCP Information Gathering
 
+## Introduction
+
+## Table of Content
+
 - [OSCP Information Gathering](#oscp-information-gathering)
   - [Introduction](#introduction)
+  - [Table of Content](#table-of-content)
   - [Host Discovery](#host-discovery)
     - [nmap](#nmap)
     - [crackmapexec](#crackmapexec)
@@ -76,8 +81,6 @@
       - [Juumla](#juumla)
       - [Sroopescan](#sroopescan)
       - [Magescan](#magescan)
-
-## Introduction
 
 ## Host Discovery
 
