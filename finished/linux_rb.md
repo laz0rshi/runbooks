@@ -1,6 +1,5 @@
 # Linux Runbook
 - [Linux Runbook](#linux-runbook)
-  - [Task List](#task-list)
   - [Stabilize Shell](#stabilize-shell)
   - [Copy tools to the target](#copy-tools-to-the-target)
   - [Enumerate](#enumerate)
@@ -50,26 +49,6 @@
     - [sudo \< v1.28 - @sickrov \[PrivEsc\]](#sudo--v128---sickrov-privesc)
     - [Docker Breakout \[PrivEsc\]](#docker-breakout-privesc)
     - [Linux Enumeration Tools \[PrivEsc\]](#linux-enumeration-tools-privesc)
-
-## Task List
-
-- [ ] [Stabilize shell](#stabilize-shell)
-- [ ] [Copy tools to the target](#copy-tools-to-the-target)
-- [ ] [Enumerate](#enumerate)
-  - [ ] [System Info](#system-info)
-  - [ ] [Permissions](#permissions)
-  - [ ] [Processes and Services](#processes-and-services)
-  - [ ] [Networking](#networking)
-  - [ ] [Users and Groups](#users-and-groups)
-  - [ ] [Tasks](#tasks)
-  - [ ] [Logs](#logs)
-  - [ ] [Installed software](#installed-software)
-- [ ] [Finalize](#Finalize)
-  - [ ] [Establish tunnel](#establish-tunnel)
-  - [ ] [Copy information from the target](#copy-tools)
-  - [ ] [Establish persistance](#establish-persistance)
-  - [ ] [Clear logs]
-
 
 ## Stabilize Shell  
 
