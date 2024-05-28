@@ -56,7 +56,6 @@ curl http://<IP>/file > file
 ```
 
 ## Pure-FTPd
-Note: sudo apt update && sudo apt install pure-ftpd
 
 ```sh
 sudo groupadd ftpgroup
@@ -85,7 +84,7 @@ ftp -v -n -s:ftp.txt
 
 ## tftp
 
-Note :  install atftp
+
 Coofig
 ```
 sudo mkdir /tftp

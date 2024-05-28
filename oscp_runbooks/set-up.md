@@ -1,35 +1,27 @@
-# Set Up
-Make folder for the project - script 
-
-Make folders for each IPs - script
-
-touch creds.txt - script
-
-start network diagram
-
-```bash
 
 #!/bin/bash
 # project_build.sh
 #####################################################################
 # Variables Declaration
 # Name of the project
-project=""
+project="relia"
 # List of IPs for the initial scan and setup
 ip_list=(
-    "" 
-    ""
-    ""
+
 )
 #####################################################################
 # Global Variables
 PROJECT_DIR="$HOME/$project"
 #####################################################################
 # Make directories 
-mkdir $PROJECT_DIR
+# Network layout
+mkdir -p "$PROJECT_DIR/network_layout"
+# mkdir $PROJECT_DIR
 for i in "${ip_list[@]}" 
 do 
-    mkdir -p "$PROJECT_DIR/$i" 
+    mkdir -p "$PROJECT_DIR/$i"
+    touch "$PROJECT_DIR/$i/port_scan"
+    echo "$i >> "$PROJECT_DIR/network_layout/ips.txt"
 done
 # app is dir is for code or exploits
 mkdir -p "$PROJECT_DIR/apps"
@@ -41,7 +33,5 @@ mkdir -p "$PROJECT_DIR/share"
 mkdir -p "$PROJECT_DIR/nmap"
 # share is for the directory used for sharing 
 touch "$PROJECT_DIR/creds.txt"
-# Network layout
-touch "$PROJECT_DIR/network_layout.txt"
 
 ```

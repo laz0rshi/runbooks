@@ -163,11 +163,8 @@ crackmapexec smb <IP> --shares -u <user> -p '<pass>'
 https://raw.githubusercontent.com/compwiz32/PowerShell/master/Get-SPN.ps1
 
 ## Enumeration - BloodHound
--> Install - Attacker VM
-```
-# Note: Install 
-sudo apt install bloodhound
-```
+kali
+```sh
 start neo4j - http://localhost:7474/
 ```
 sudo neo4j start

@@ -74,6 +74,8 @@
     - [Whatweb](#whatweb)
     - [fuzzing](#fuzzing)
       - [GoBuster](#gobuster)
+      - [dirb](#dirb)
+      - [feroxbuster](#feroxbuster)
       - [ffuf](#ffuf)
     - [Nikto - Web Server Scanner](#nikto---web-server-scanner)
     - [CMS](#cms)
@@ -81,6 +83,7 @@
       - [Juumla](#juumla)
       - [Sroopescan](#sroopescan)
       - [Magescan](#magescan)
+  - [nmap blast](#nmap-blast)
 
 ## Host Discovery
 
@@ -88,7 +91,7 @@ This is only to discover host in get an understanding of the network.
 
 ### nmap
 ```sh
-nmap -sn <ip-range> -oG ping-sweep.txt
+nmap -sn <ip-range> -oG nmap/ping-sweep.txt
 grep Up ping-sweep.txt | cut -d " " -f 2
 ```
 
@@ -220,7 +223,7 @@ dnsrecon -d <domain> -D wordlist.txt -t brt
 
 ### nmap 
 ```sh
-nmap -v -p 139,445 -oG smb.txt <ip-range>
+nmap -v -p 139,445 <ip-range> -oG smb.txt 
 nmap -v -p 139,445 --script smb-os-discovery <ip>
 ```
 
@@ -287,7 +290,7 @@ ldapsearch -h <IP> -bx "DC=domain,DC=com"
 
 ### nmap 
 ```sh
-sudo nmap -sU --open -p 161 10.11.1.1-254 -oG open-snmp.txt
+sudo nmap -sU --open -p 161 <ip-range> -oG open-snmp.txt
 ```
 
 ```sh
@@ -342,7 +345,7 @@ nc <IP> <PORT>
 
 ### nmap 
 ```sh
-nmap --script ftp-* -p 21 <ip>
+nmap -p 21 --script ftp-* <ip>
 ```
 
 ### binary transfer
@@ -440,8 +443,19 @@ whatweb http://<ip> <ip>
 
 #### GoBuster
 ```sh
-gobuster dir -u http://<ip> -w usr/share/wordlists/dirb/common.txt -t 5 -o <ip>/gobuster -x txt,pdf,config
+gobuster dir -u http://<ip> -w /usr/share/wordlists/dirb/common.txt -t 5 -o <ip>/gobuster -x txt,pdf,config
 ```
+#### dirb
+It can go more the one file deep -R??
+```sh
+└─$ dirb  http://<ip> /usr/share/wordlists/dirb/common.txt -N 403 -o output.dirb
+```
+
+#### feroxbuster
+```sh
+feroxbuster --url http://<ip>
+```
+
 
 #### ffuf
 ```sh
@@ -493,3 +507,16 @@ php magescan.phar scan:all www.example.com
 ```
 https://github.com/steverobbins/magescan
 
+
+## nmap blast
+This is a self made to get all the information fast
+```sh
+crackmapexec smb <ip-range> > cracksmb.info
+sudo nmap -O <ip-range> --osscan-guess -o OS_fingeprint.info
+nmap -v -p 139,445 <ip-range> -o smb.info
+nmap -sV -p 111 --script=rpcinfo <ip-range> -o rpc.info
+sudo nmap -sU --open -p 161 <ip-range> -o open-snmp.info
+nmap -p 21 --script ftp-*  <ip> -o ftp.info
+nmap -p 25 --script smtp-commands,smtp-open-relay <ip> -o smtp.info
+sudo nmap -p 80,443 --script=http-enum <ip> -o http.info
+```
