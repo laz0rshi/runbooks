@@ -9,15 +9,10 @@ I will then create a runbook for every single check list with commands to run th
 
 - [ ] [Set Up](framework/set-up.md)
 - [x] [Information Gathering](information_gathering.md)
-<<<<<<< HEAD
 - [X] [Web Application Attacks](web_application_attacks.md)
 - [X] [Password Attacks](password_attacks.md)
 - [X] [Client-Side Attacks](client_side_attacks.md)
-=======
-- [x] [Web Application Attacks](web_application_attacks.md)
-- [X] [Password Attacks](password_attacks.md)
-- [x] [Client-Side Attacks](client_side_attacks.md)
->>>>>>> 83da767e62a7d054b00b28848a065710ac1e336a
+
 - [X] [File Transfers](file_transfers.md)
 - [h] [Linux Enumeration and Privilege Escalation](linux_enumeration_and_privilege_escalation.md)
 - [ ] [Windows Enumeration and Privilege Escalation](windows_enumeration_and_privilege_escalation.md)
